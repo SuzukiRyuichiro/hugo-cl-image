@@ -1,0 +1,10 @@
+name = "hugo-cl-image"
+license = "MIT"
+description = "Add cloudinary images to your hugo websites"
+tags = ["blog", "company"]
+features = ["image", "cloudinary", "speed"]
+
+# If the theme has a single author
+[author]
+    name = "Ryuichiro Suzuki"
+    homepage = "https://ryuichirosuzuki.com"
