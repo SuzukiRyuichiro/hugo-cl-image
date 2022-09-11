@@ -1,1 +1,1 @@
-<img {{ with .Get "src" }}style="{{ . | safeURL }}"{{ end }} {{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }} {{ with .Get "class" }}class="{{ . }}{{ end }}">
+<img src="{{ .Get "src" | safeURL }}" {{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }} {{ with .Get "class" }}class="{{ . }}"{{ end }}>
