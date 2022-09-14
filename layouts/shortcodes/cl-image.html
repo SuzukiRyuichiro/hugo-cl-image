@@ -1,3 +1,19 @@
-{{ if .Get "src" }}
-    <img src="{{ .Site.Params.baseURL }}{{ .Site.Params.cloudName }}/image/upload/{{ with .Site.Params.folderName }}{{ . }}/{{ end }}{{ .Get "src" | safeURL }}" {{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }} {{ with .Get "class" }}class="{{ . }}"{{ end }}>
+{{- $cloudName := .Site.Params.cloudName -}}
+{{- $baseURL := .Site.Params.baseURL -}}
+
+{{ if not $cloudName }}
+    <h1>Please provide a cloud name in the config file</h1>
+{{ else if not $baseURL }}
+    <h1>Please provide a base URL which should be "https://res.cloudinary.com/" in the config file</h1>
+{{ else if .Get "src" }}
+    {{- $options := slice -}}
+    {{- with .Get "width" -}}
+        {{- $width_option := printf "w_%v" . -}}
+        {{- $options = $options | append $width_option  -}}
+    {{ end }}
+    {{- with .Get "height" -}}
+        {{- $height_option := printf "h_%v" . -}}
+        {{- $options = $options | append $height_option  -}}
+    {{ end }}
+    <img src="{{ .Site.Params.baseURL }}{{ .Site.Params.cloudName }}/image/upload/{{ with $options }}{{ delimit $options "," }}/{{ end }}{{ with .Site.Params.folderName }}{{ . }}/{{ end }}{{ .Get "src" | safeURL }}" {{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }} {{ with .Get "class" }}class="{{ . }}"{{ end }}>
 {{ end }}
