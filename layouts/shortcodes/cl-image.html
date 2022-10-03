@@ -15,5 +15,5 @@
         {{- $height_option := printf "h_%v" . -}}
         {{- $options = $options | append $height_option  -}}
     {{ end }}
-    <img src="{{ .Site.Params.baseURL }}{{ .Site.Params.cloudName }}/image/upload/{{ with $options }}{{ delimit $options "," }}/{{ end }}{{ with .Site.Params.folderName }}{{ . }}/{{ end }}{{ .Get "src" | safeURL }}" {{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }} {{ with .Get "class" }}class="{{ . }}"{{ end }}>
+    <img src="{{ .Site.Params.baseURL }}{{ .Site.Params.cloudName }}/image/upload/{{ with $options }}{{ delimit $options "," }}/{{ end }}{{ with .Site.Params.folderName }}{{ . }}/{{ end }}{{ .Get "src" | safeURL }}" {{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }} {{ with .Get "class" }}class="{{ . }}"{{ end }} {{ with .Get "alt" }}alt="{{ . }}"{{ end }}>
 {{ end }}
